@@ -33,7 +33,7 @@ namespace SampleASP.DAL
                 conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 if(dr.HasRows){
-                    while(dr.NextResult()){
+                    while(dr.Read()){
                         lstStudent.Add(new Student{
                             StudentID = dr["StudentID"].ToString(),
                             FirstName = dr["FirstName"].ToString(),

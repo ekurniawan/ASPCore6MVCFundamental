@@ -16323,6 +16323,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Workshop\\ASP Core\\SampleASP\\Views\\Students\\GetStudents.cshtml",
+      "TargetPath": "Views\\Students\\GetStudents.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Workshop\\ASP Core\\SampleASP\\Views\\About\\Index.cshtml",
       "TargetPath": "Views\\About\\Index.cshtml",
       "FileKind": "mvc"
