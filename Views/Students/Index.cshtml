@@ -1,0 +1,8 @@
+@model SampleASP.Models.Student
+
+<div>
+    <h2>Data Student</h2>
+    <p>Student ID: @Model.StudentID ,
+        Student Name: @Model.FirstName @Model.LastName , 
+        EnrollmentDate: @Model.EnrollmentDate.ToShortDateString()</p>
+</div>
