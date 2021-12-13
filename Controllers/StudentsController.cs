@@ -27,8 +27,13 @@ namespace SampleASP.Controllers
                 EnrollmentDate = DateTime.Now
             };
 
+            List<string> lstHobby = new List<string>{
+                "Sepedaan","Game","Baca Buku"
+            };
+
+            ViewData["lsthobby"] = lstHobby;
             ViewData["username"] = "ekurniawan";
-            ViewBag.Role = "admin";
+            ViewBag.Aturan = "admin";
 
             return View(student);
         }

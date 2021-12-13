@@ -1,11 +1,23 @@
 @model SampleASP.Models.Student
 
+@{
+    var lstHobby = (List<string>)ViewData["lsthobby"];
+}
+
 <div>
     <h2>Data Student</h2>
     <p>Student ID: @Model.StudentID ,
         Student Name: @Model.FirstName @Model.LastName , 
         EnrollmentDate: @Model.EnrollmentDate.ToShortDateString()</p>
     <p>Username anda : @ViewData["username"]
-         dan Role: @ViewBag.Role
+         dan Role: @ViewBag.Aturan
     </p>
+
+    <ul>
+    @foreach (var hobby in lstHobby)
+    {
+        <li>@hobby</li>
+    }
+    </ul>
+   
 </div>
