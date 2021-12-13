@@ -16313,6 +16313,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Workshop\\ASP Core\\SampleASP\\Views\\Shared\\_LayoutCustom.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutCustom.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Workshop\\ASP Core\\SampleASP\\Views\\Home\\HelloAsp.cshtml",
       "TargetPath": "Views\\Home\\HelloAsp.cshtml",
       "FileKind": "mvc"
