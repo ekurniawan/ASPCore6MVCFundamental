@@ -26,8 +26,27 @@ namespace SampleASP.DAL
 
         public IEnumerable<Student> GetAll()
         {
+            List<Student> lstStudent = new List<Student>();
             using(SqlConnection conn = new SqlConnection(GetConnStr())){
+                string strSql = @"select * from Students order by StudentID";
+                SqlCommand cmd = new SqlCommand(strSql,conn);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if(dr.HasRows){
+                    while(dr.NextResult()){
+                        lstStudent.Add(new Student{
+                            StudentID = dr["StudentID"].ToString(),
+                            FirstName = dr["FirstName"].ToString(),
+                            LastName = dr["LastName"].ToString(),
+                            EnrollmentDate = Convert.ToDateTime(dr["EnrollmentDate"])
+                        });
+                    }
+                }
+                dr.Close();
+                cmd.Dispose();
+                conn.Close();
 
+                return lstStudent;
             }
         }
 
