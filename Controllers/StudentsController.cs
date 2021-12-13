@@ -27,6 +27,9 @@ namespace SampleASP.Controllers
                 EnrollmentDate = DateTime.Now
             };
 
+            ViewData["username"] = "ekurniawan";
+            ViewBag.Role = "admin";
+
             return View(student);
         }
 
