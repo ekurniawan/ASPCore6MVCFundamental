@@ -16,7 +16,8 @@ namespace SampleASP.DAL
             _config = config;
         }
 
-        private string GetConnStr(){
+        private string GetConnStr()
+        {
             return _config.GetConnectionString("DefaultConnection");
         }
 
@@ -63,12 +64,39 @@ namespace SampleASP.DAL
 
         public Student GetById(string studentID)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var strSql = "select * from Students where StudentID=@StudentID";
+                var param = new { StudentID = studentID };
+                var result = conn.QuerySingle<Student>(strSql, param);
+                return result;
+            }
         }
 
         public void Insert(Student student)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var strSql = @"insert into Students(StudentID,FirstName,LastName,EnrollmentDate) 
+                             values(@StudentID,@FirstName,@LastName,@EnrollmentDate)";
+                var param = new
+                {
+                    StudentID = student.StudentID,
+                    FirstName = student.FirstName,
+                    LastName = student.LastName,
+                    EnrollmentDate = student.EnrollmentDate
+                };
+                try
+                {
+                    var result = conn.Execute(strSql, param);
+                    if (result != 1)
+                        throw new Exception("Gagal menambahkan data !");
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception($"Error: {sqlEx.Message}");
+                }
+            }
         }
 
         public void Update(string studentID, Student student)
