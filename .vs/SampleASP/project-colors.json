@@ -5,7 +5,12 @@
       "ProjectGuid": "9e0abde8-a711-44d2-9b70-a6419a51108c",
       "DisplayName": "SampleASP",
       "ColorIndex": 0
+    },
+    "ae289001-323e-437d-97a5-69222d1763eb": {
+      "ProjectGuid": "ae289001-323e-437d-97a5-69222d1763eb",
+      "DisplayName": "SampleASP",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }

@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using SampleASP.Models;
+using Dapper;
 
 namespace SampleASP.DAL
 {
@@ -25,6 +26,16 @@ namespace SampleASP.DAL
         }
 
         public IEnumerable<Student> GetAll()
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                string strSql = @"select * from Students order by StudentID";
+                var results = conn.Query<Student>(strSql);
+                return results;
+            }
+        }
+
+        /*public IEnumerable<Student> GetAll()
         {
             List<Student> lstStudent = new List<Student>();
             using(SqlConnection conn = new SqlConnection(GetConnStr())){
@@ -48,7 +59,7 @@ namespace SampleASP.DAL
 
                 return lstStudent;
             }
-        }
+        }*/
 
         public Student GetById(string studentID)
         {
