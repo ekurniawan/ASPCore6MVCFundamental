@@ -24,27 +24,28 @@ namespace SampleASP.Controllers
 
         public IActionResult Index()
         {
-            var student = new Student{
-                StudentID = "778898",
-                FirstName = "Erick",
-                LastName = "Kurniawan",
-                EnrollmentDate = DateTime.Now
-            };
-
-            List<string> lstHobby = new List<string>{
-                "Sepedaan","Game","Baca Buku"
-            };
-
-            ViewData["lsthobby"] = lstHobby;
-            ViewData["username"] = "ekurniawan";
-            ViewBag.Aturan = "admin";
-
-            return View(student);
-        }
-
-        public IActionResult GetStudents(){
             var models = _studentDAL.GetAll();
             return View(models);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Student student)
+        {
+            try
+            {
+                _studentDAL.Insert(student);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

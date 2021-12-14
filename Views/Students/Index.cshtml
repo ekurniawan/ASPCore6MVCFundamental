@@ -1,25 +1,21 @@
-@model SampleASP.Models.Student
-
-@{
-    Layout = "_LayoutCustom";
-    
-    var lstHobby = (List<string>)ViewData["lsthobby"];
-}
+@model  List<SampleASP.Models.Student>
 
 <div>
-    <h2>Data Student</h2>
-    <p>Student ID: @Model.StudentID ,
-        Student Name: @Model.FirstName @Model.LastName , 
-        EnrollmentDate: @Model.EnrollmentDate.ToShortDateString()</p>
-    <p>Username anda : @ViewData["username"]
-         dan Role: @ViewBag.Aturan
-    </p>
-
-    <ul>
-    @foreach (var hobby in lstHobby)
-    {
-        <li>@hobby</li>
-    }
-    </ul>
-   
+    <table class="table table-striped">
+        <tr>
+            <th>StudentID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Enrollment Date</th>
+        </tr>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.StudentID</td>
+                <td>@student.FirstName</td>
+                <td>@student.LastName</td>
+                <td>@student.EnrollmentDate.ToShortDateString()</td>
+            </tr>
+        }
+    </table>
 </div>
