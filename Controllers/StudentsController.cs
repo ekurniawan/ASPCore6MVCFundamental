@@ -24,6 +24,9 @@ namespace SampleASP.Controllers
 
         public IActionResult Index()
         {
+            if (TempData["pesan"] != null)
+                ViewData["pesan"] = TempData["pesan"];
+
             var models = _studentDAL.GetAll();
             return View(models);
         }
@@ -46,6 +49,8 @@ namespace SampleASP.Controllers
             try
             {
                 _studentDAL.Insert(student);
+                TempData["pesan"] = 
+                    $"<span class='alert alert-success'>Data student {student.FirstName} {student.LastName} berhasil ditambahkan</span>";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
