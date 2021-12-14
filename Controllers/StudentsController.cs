@@ -74,6 +74,8 @@ namespace SampleASP.Controllers
             try
             {
                 _studentDAL.Update(student);
+                TempData["pesan"] =
+                   $"<span class='alert alert-success'>Data student {student.FirstName} {student.LastName} berhasil update</span>";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -97,6 +99,8 @@ namespace SampleASP.Controllers
             try
             {
                 _studentDAL.Delete(id);
+                TempData["pesan"] =
+                   $"<span class='alert alert-success'>Data student dengan id {id} berhasil didelete</span>";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
