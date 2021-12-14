@@ -44,6 +44,8 @@ namespace SampleASP.Controllers
             }
             catch (Exception ex)
             {
+                ViewData["pesanerror"] = 
+                    $"<span class='alert alert-danger'>Error: {ex.Message}</span>";
                 return View();
             }
         }
