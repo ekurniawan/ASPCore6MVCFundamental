@@ -4,6 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IStudentDAL, StudentDAL>();
+builder.Services.AddScoped<IEnrollmentDAL,EnrollmentDAL>();
+
 builder.Services.AddControllersWithViews();
 
 

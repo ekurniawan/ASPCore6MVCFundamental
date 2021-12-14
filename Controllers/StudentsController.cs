@@ -14,12 +14,14 @@ namespace SampleASP.Controllers
     {
         private ILogger<StudentsController> _logger;
         private IStudentDAL _studentDAL;
+        private IEnrollmentDAL _enrollmentDAL;
 
         public StudentsController(ILogger<StudentsController> logger,
-            IStudentDAL studentDAL)
+            IStudentDAL studentDAL,IEnrollmentDAL enrollmentDAL)
         {
             _logger = logger;
             _studentDAL = studentDAL;
+            _enrollmentDAL = enrollmentDAL;
         }
 
         public IActionResult Index()
@@ -109,6 +111,13 @@ namespace SampleASP.Controllers
                 var model = _studentDAL.GetById(id);
                 return View(model);
             }
+        }
+
+
+        public IActionResult ShowEnrollment(string id)
+        {
+            var models = _enrollmentDAL.GetByStudent(id);
+            return View(models);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

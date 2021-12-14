@@ -29,29 +29,32 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnrollmentDate)
-            </td>
-            <td>
-                 <a class="btn btn-info btn-sm" asp-action="Details" 
-                    asp-route-id="@item.StudentID">details</a>
-                    <a class="btn btn-warning btn-sm" asp-action="Edit" 
-                    asp-route-id="@item.StudentID">edit</a>
-                    <a class="btn btn-danger btn-sm" asp-action="Delete" 
-                    asp-route-id="@item.StudentID">delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Details"
+                   asp-route-id="@item.StudentID">details</a>
+                    <a class="btn btn-primary btn-sm" asp-action="ShowEnrollment"
+                   asp-route-id="@item.StudentID">enroll</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit"
+                   asp-route-id="@item.StudentID">edit</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete"
+                   asp-route-id="@item.StudentID">delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
