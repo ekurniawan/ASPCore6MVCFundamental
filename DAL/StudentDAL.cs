@@ -99,9 +99,30 @@ namespace SampleASP.DAL
             }
         }
 
-        public void Update(string studentID, Student student)
+        public void Update(Student student)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                string strSql = @"update Students set FirstName=@FirstName,LastName=@LastName,
+                EnrollmentDate=@EnrollmentDate where StudentID=@StudentID";
+                var param = new
+                {
+                    FirstName = student.FirstName,
+                    LastName = student.LastName,
+                    EnrollmentDate = student.EnrollmentDate,
+                    StudentID = student.StudentID
+                };
+                try
+                {
+                    var result = conn.Execute(strSql, param);
+                    if(result != 1)
+                        throw new Exception("Gagal update data");
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception($"Kesalahan: {sqlEx.Message}");
+                }
+            }
         }
     }
 }

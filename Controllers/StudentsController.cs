@@ -28,6 +28,12 @@ namespace SampleASP.Controllers
             return View(models);
         }
 
+        public IActionResult Details(string id)
+        {
+            var model = _studentDAL.GetById(id);
+            return View(model);
+        }
+
         public IActionResult Create()
         {
             return View();
@@ -46,6 +52,28 @@ namespace SampleASP.Controllers
             {
                 ViewData["pesanerror"] = 
                     $"<span class='alert alert-danger'>Error: {ex.Message}</span>";
+                return View();
+            }
+        }
+
+        public IActionResult Edit(string id)
+        {
+            var model = _studentDAL.GetById(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Student student)
+        {
+            try
+            {
+                _studentDAL.Update(student);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewData["pesanerror"] = $"<span class='alert alert-danger'>{ex.Message}</span>";
                 return View();
             }
         }

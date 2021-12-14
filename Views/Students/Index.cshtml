@@ -10,6 +10,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Enrollment Date</th>
+            <th></th>
         </tr>
         @foreach (var student in Model)
         {
@@ -18,6 +19,12 @@
                 <td>@student.FirstName</td>
                 <td>@student.LastName</td>
                 <td>@student.EnrollmentDate.ToShortDateString()</td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Details" 
+                    asp-route-id="@student.StudentID">details</a>
+                     <a class="btn btn-warning btn-sm" asp-action="Edit" 
+                    asp-route-id="@student.StudentID">edit</a>
+                </td>
             </tr>
         }
     </table>
