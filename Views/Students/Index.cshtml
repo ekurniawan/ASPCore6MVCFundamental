@@ -22,8 +22,10 @@
                 <td>
                     <a class="btn btn-info btn-sm" asp-action="Details" 
                     asp-route-id="@student.StudentID">details</a>
-                     <a class="btn btn-warning btn-sm" asp-action="Edit" 
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" 
                     asp-route-id="@student.StudentID">edit</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" 
+                    asp-route-id="@student.StudentID">delete</a>
                 </td>
             </tr>
         }

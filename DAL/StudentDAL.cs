@@ -23,7 +23,26 @@ namespace SampleASP.DAL
 
         public void Delete(string studentID)
         {
-            throw new NotImplementedException();
+            var result = GetById(studentID);
+            if (result == null)
+                throw new Exception("Student tidak ditemukan");
+
+
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                string strSql = @"delete from Students where StudentID=@StudentID";
+                var param = new { StudentID = studentID };
+                try
+                {
+                    var output = conn.Execute(strSql, param);
+                    if (output != 1)
+                        throw new Exception("Gagal delete data");
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception($"Kesalahan: {sqlEx.Message}");
+                }
+            }
         }
 
         public IEnumerable<Student> GetAll()

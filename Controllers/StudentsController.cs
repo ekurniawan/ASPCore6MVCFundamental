@@ -78,6 +78,30 @@ namespace SampleASP.Controllers
             }
         }
 
+        public IActionResult Delete(string id)
+        {
+            var model = _studentDAL.GetById(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(string id)
+        {
+            try
+            {
+                _studentDAL.Delete(id);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewData["pesanerror"] = ex.Message;
+                var model = _studentDAL.GetById(id);
+                return View(model);
+            }
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
